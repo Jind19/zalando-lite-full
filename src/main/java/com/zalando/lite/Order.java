@@ -39,8 +39,7 @@ public class Order {
      *
      * Automatically sets the order date to the current timestamp.
      */
-    public Order(int orderId, Customer customer, List<OrderItem> items) {
-        this.orderId = orderId;
+    public Order( Customer customer, List<OrderItem> items) {
         this.customer = customer;
         this.items = items;
         this.orderDate = LocalDateTime.now();
