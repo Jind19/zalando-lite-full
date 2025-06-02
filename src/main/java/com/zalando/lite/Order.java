@@ -39,30 +39,53 @@ public class Order {
      *
      * Automatically sets the order date to the current timestamp.
      */
+    public Order(int orderId, Customer customer, List<OrderItem> items) {
+        this.orderId = orderId;
+        this.customer = customer;
+        this.items = items;
+        this.orderDate = LocalDateTime.now();
+    }
+
 
     // Returns the order ID
-    public int getOrderId() { /* ... */ }
+    public int getOrderId() {
+        return this.orderId;
+    }
 
-    // Sets the order ID (may be used when generating orders manually)
-    public void setOrderId(int orderId) { /* ... */ }
+    // Sets the order ID (maybe used when generating orders manually)
+    public void setOrderId(int orderId) {
+        this.orderId = orderId;
+    }
 
     // Returns the customer who placed the order
-    public Customer getCustomer() { /* ... */ }
+    public Customer getCustomer() {
+        return this.customer;
+    }
 
     // Sets the customer for the order
-    public void setCustomer(Customer customer) { /* ... */ }
+    public void setCustomer(Customer customer) {
+        this.customer = customer;
+    }
 
     // Returns the list of order items
-    public List<OrderItem> getItems() { /* ... */ }
+    public List<OrderItem> getItems() {
+        return this.items;
+    }
 
     // Sets the list of order items
-    public void setItems(List<OrderItem> items) { /* ... */ }
+    public void setItems(List<OrderItem> items) {
+        this.items = items;
+    }
 
     // Returns the timestamp of when the order was placed
-    public LocalDateTime getOrderDate() { /* ... */ }
+    public LocalDateTime getOrderDate() {
+        return this.orderDate;
+    }
 
     // Sets the order timestamp (usually auto-generated)
-    public void setOrderDate(LocalDateTime orderDate) { /* ... */ }
+    public void setOrderDate(LocalDateTime orderDate) {
+        this.orderDate = orderDate;
+    }
 
     /**
      * Calculates the total cost of the order by summing
@@ -70,12 +93,19 @@ public class Order {
      *
      * @return the total order cost
      */
-    public double calculateTotal() { /* ... */ }
+    public double calculateTotal() {
+        double subTotal = 0.0;
+        for(OrderItem item : items){
+            subTotal += item.getSubtotal() ; // Add each item's subtotal to total
+        }
+        return subTotal;
+    }
 
-    /**
-     * Returns a string summary of the order.
-     * Useful for displaying in CLI or logs.
-     */
     @Override
-    public String toString() { /* ... */ }
+    public String toString() {
+        return "Order#" + orderId + " by " + customer.getName() +
+                " on " + orderDate.toLocalDate() +
+                " | Total: €" + calculateTotal();
+    }
+
 }
