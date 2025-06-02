@@ -48,39 +48,75 @@ public class Product {
      */
 
     // Getter and setter for ID
-    public int getId() { /* ... */ }
-    public void setId(int id) { /* ... */ }
+    public int getId() {
+        return this.id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
 
     // Getter and setter for name
-    public String getName() { /* ... */ }
-    public void setName(String name) { /* ... */ }
+    public String getName() {
+        return this.name;
+    }
+    public void setName(String name) {
+        this.name = name;
+    }
 
     // Getter and setter for category
-    public String getCategory() { /* ... */ }
-    public void setCategory(String category) { /* ... */ }
+    public String getCategory() {
+        return this.category;
+    }
+    public void setCategory(String category) {
+        this.category = category;
+    }
 
     // Getter and setter for price
-    public double getPrice() { /* ... */ }
-    public void setPrice(double price) { /* ... */ }
+    public double getPrice() {
+        return this.price;
+    }
+    public void setPrice(double price) {
+        this.price = price;
+    }
 
     // Getter and setter for stock quantity
-    public int getStock() { /* ... */ }
-    public void setStock(int stock) { /* ... */ }
+    public int getStock() {
+        return this.stock;
+    }
+    public void setStock(int stock) {
+        this.stock = stock;
+    }
 
     // Getter and setter for size options
-    public List<String> getAvailableSizes() { /* ... */ }
-    public void setAvailableSizes(List<String> sizes) { /* ... */ }
+    public List<String> getAvailableSizes() {
+        return this.availableSizes;
+    }
+    public void setAvailableSizes(List<String> sizes) {
+        this.availableSizes = sizes;
+    }
 
     /**
      * Optional method to check if the product is out of stock.
      *
      * @return true if stock is zero or less
      */
-    public boolean isOutOfStock() { /* ... */ }
+    public boolean isOutOfStock() {
+        return stock <= 0;
+    }
 
     /**
      * Returns a string summary of the product’s details.
      */
     @Override
-    public String toString() { /* ... */ }
+    public String toString() {
+        return "Product{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", category='" + category + '\'' +
+                ", price=" + price +
+                ", stock=" + stock +
+                ", availableSizes=" + availableSizes +
+                '}';
+    }
 }
