@@ -1,5 +1,6 @@
 package com.zalando.lite;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -25,6 +26,10 @@ public class ReviewManager {
     // Stores reviews by product ID
     private Map<Integer, List<Review>> reviewMap;
 
+    public ReviewManager() {
+        this.reviewMap = new HashMap<>();
+    }
+
     /**
      * Adds a review to the map, linked by the product's ID.
      * Initializes a new list if it's the first review for the product.
@@ -33,7 +38,9 @@ public class ReviewManager {
      */
     public void addReview(Review review) {
         // TODO: Get product ID from review
+        int productId = review.getProduct().getId();
         // TODO: Check if review list exists for this product
+
         // TODO: If not, create a new list
         // TODO: Add review to the list
     }

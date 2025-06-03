@@ -41,41 +41,72 @@ public class Review {
      * Constructor for creating a review.
      * This should validate rating (1–5) and auto-set timestamp.
      */
+    public Review(Product product) {
+        this.product = product;
+    }
 
     // Returns the customer who submitted the review
-    public Customer getCustomer() { /* ... */ }
+    public Customer getCustomer() {
+        return this.customer;
+    }
 
     // Sets the customer reference
-    public void setCustomer(Customer customer) { /* ... */ }
+    public void setCustomer(Customer customer) {
+        this.customer = customer;
+    }
 
     // Returns the reviewed product
-    public Product getProduct() { /* ... */ }
+    public Product getProduct() {
+        return this.product;
+    }
 
     // Sets the product that was reviewed
-    public void setProduct(Product product) { /* ... */ }
+    public void setProduct(Product product) {
+        this.product = product;
+    }
 
     // Returns the numeric star rating
-    public int getRating() { /* ... */ }
+    public int getRating() {
+        return this.rating;
+    }
 
     // Sets the star rating — consider validating range (1–5)
-    public void setRating(int rating) { /* ... */ }
+    public void setRating(int rating) {
+        this.rating = rating;
+    }
 
     // Returns the optional text comment
-    public String getComment() { /* ... */ }
+    public String getComment() {
+        return this.comment;
+    }
 
     // Sets the text comment for the review
-    public void setComment(String comment) { /* ... */ }
+    public void setComment(String comment) {
+        this.comment = comment;
+    }
 
     // Returns the creation timestamp
-    public LocalDateTime getTimestamp() { /* ... */ }
+    public LocalDateTime getTimestamp() {
+        return this.timestamp;
+    }
 
     // Sets the timestamp (usually only called in constructor)
-    public void setTimestamp(LocalDateTime timestamp) { /* ... */ }
+    public void setTimestamp(LocalDateTime timestamp) {
+        this.timestamp = timestamp;
+    }
 
     /**
      * Returns a formatted string representation of the review.
      * Useful for logs, CLI display, or reports.
      */
     @Override
-    public String toString() { /* ... */ }
+    public String toString() {
+        return "Review{" +
+                "customer=" + customer +
+                ", product=" + product +
+                ", rating=" + rating +
+                ", comment='" + comment + '\'' +
+                ", timestamp=" + timestamp +
+                '}';
+    }
 }
