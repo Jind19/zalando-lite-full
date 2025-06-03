@@ -31,6 +31,12 @@ public class Delivery {
      * Constructs a Delivery with an associated order and courier.
      * Automatically sets the timestamp and default status ("Pending").
      */
+    public Delivery(Order order, Courier courier) {
+        this.order = order;
+        this.courier = courier;
+        this.status = "Pending";
+        this.timestamp = LocalDateTime.now();
+    }
 
     // Returns the order associated with the delivery
     public Order getOrder() { /* ... */ }
@@ -53,10 +59,16 @@ public class Delivery {
     // Returns the timestamp when the delivery was created
     public LocalDateTime getTimestamp() { /* ... */ }
 
+
     /**
      * Provides a simple string representation of the delivery details.
      * Useful for debugging and logging to file.
      */
     @Override
-    public String toString() { /* ... */ }
+    public String toString() {
+        return "Order ID: " + order.getOrderDate() +
+                ", Courier: " + courier.getName() +
+                ", Status: " + status +
+                ", Created: " + timestamp;
+    }
 }

@@ -2,6 +2,7 @@ package com.zalando.lite;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -24,7 +25,7 @@ import java.util.Map;
 public class OrderManager {
 
     // Stores orders for each customer (keyed by customer ID)
-    private Map<Integer, List<Order>> customerOrders;
+    private Map<Integer, List<Order>> customerOrders = new HashMap<>();
 
     // Used to update inventory after order placement
     private InventoryManager inventoryManager;
