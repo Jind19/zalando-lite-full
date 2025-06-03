@@ -44,24 +44,13 @@ public class OrderManager {
      * @return the created Order, or null if validation fails
      */
     public Order createOrder(Customer customer, List<OrderItem> items) {
-        // Check if all products have enough stock
-        for (OrderItem item : items) {
-            int productId = item.getProduct().getId();
-            int quantity = item.getQuantity();
-
-            if (!inventoryManager.isProductAvailable(productId) ||
-                    inventoryManager.findProductById(productId).getStock() < quantity) {
-                // Stock insufficient or product not available
-                return null;
-            }
+        // Validate stock
+        if (!validateStock(items)) {
+            return null; // Return null if stock is insufficient
         }
 
-        // Reduce stock for all items
-        for (OrderItem item : items) {
-            int productId = item.getProduct().getId();
-            int quantity = item.getQuantity();
-            inventoryManager.reduceStock(productId, quantity);
-        }
+        // Update inventory
+        updateInventory(items);
 
         // Create new order
         Order order = new Order(customer, items);
