@@ -1,5 +1,6 @@
 package com.zalando.lite;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -23,6 +24,10 @@ public class DeliveryService {
     // List of all couriers available to the system
     private List<Courier> couriers;
 
+    public DeliveryService() {
+        this.couriers = new ArrayList<>();
+    }
+
     /**
      * Attempts to assign an available courier to the given order.
      *
@@ -32,7 +37,15 @@ public class DeliveryService {
      * @param order the order that needs to be delivered
      * @return the resulting Delivery object, or null if no couriers available
      */
-    public Delivery assignCourier(Order order) { /* ... */ }
+    public Delivery assignCourier(Order order) {
+        for (Courier courier : couriers) {
+            if (courier.isAvailable()) {
+                courier.setAvailable(false); // mark as busy
+                return new Delivery(order, courier);
+            }
+        }
+        return null; // No available courier
+    }
 
     /**
      * Updates the status of an existing delivery.
@@ -42,7 +55,15 @@ public class DeliveryService {
      * @param delivery the delivery object to update
      * @param newStatus the new status string
      */
-    public void updateDeliveryStatus(Delivery delivery, String newStatus) { /* ... */ }
+    public void updateDeliveryStatus(Delivery delivery, String newStatus) {
+        if (delivery == null) {
+            throw new IllegalArgumentException("Delivery cannot be null.");
+        }
+        if (newStatus == null || newStatus.isEmpty()) {
+            throw new IllegalArgumentException("Status cannot be null or empty.");
+        }
+        delivery.setStatus(newStatus);
+    }
 
     /**
      * Optional helper method to get all available couriers.
@@ -51,5 +72,13 @@ public class DeliveryService {
      *
      * @return a list of currently available couriers
      */
-    public List<Courier> getAvailableCouriers() { /* ... */ }
+    public List<Courier> getAvailableCouriers() {
+        List<Courier> available = new ArrayList<>();
+        for(Courier courier : couriers) {
+            if(courier.isAvailable()){
+                available.add(courier);
+            }
+        }
+        return available;
+    }
 }
