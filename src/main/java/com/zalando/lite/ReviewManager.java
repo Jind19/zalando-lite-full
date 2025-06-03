@@ -1,5 +1,6 @@
 package com.zalando.lite;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -40,9 +41,14 @@ public class ReviewManager {
         // TODO: Get product ID from review
         int productId = review.getProduct().getId();
         // TODO: Check if review list exists for this product
-
         // TODO: If not, create a new list
+        List<Review> reviews = reviewMap.get(productId);
+        if(reviews == null){
+            reviews = new ArrayList<>();
+            reviewMap.put(productId, reviews);
+        }
         // TODO: Add review to the list
+        reviews.add(review);
     }
 
     /**
@@ -54,7 +60,7 @@ public class ReviewManager {
     public List<Review> getReviewsForProduct(int productId) {
         // TODO: Return the list from the map
         // TODO: If no reviews exist, return an empty list instead of null
-        return null;
+        return reviewMap.getOrDefault(productId, new ArrayList<>());
     }
 
     /**
@@ -63,5 +69,8 @@ public class ReviewManager {
      */
     public void printReviewsForProduct(int productId) {
         // TODO: Get and print each review from the list
+        List<Review> reviews = getReviewsForProduct(productId);
+        for(Review review : reviews)
+            System.out.println(review.toString());
     }
 }
