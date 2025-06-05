@@ -3,6 +3,7 @@ package com.zalando.lite;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.time.LocalDate;
 import java.util.List;
 
 /**
@@ -35,6 +36,16 @@ public class ReportManager {
         // TODO: Use FileWriter wrapped in try-with-resources
         // TODO: Loop over deliveries and write each one to a new line
         // TODO: Catch and handle IOException with a user-friendly message
+
+        try (FileWriter writer = new FileWriter(filePath)) {
+            for (Delivery delivery : deliveries) {
+                writer.write(delivery.toString());
+                writer.write(System.lineSeparator());
+            }
+            System.out.println("✅ Delivery report exported to: " + filePath);
+        } catch (IOException e) {
+            System.err.println("❌ Failed to write delivery report: " + e.getMessage());
+        }
     }
 
     /**
@@ -43,7 +54,7 @@ public class ReportManager {
      * @return a recommended file path for report export
      */
     public String getDefaultReportPath() {
-        // TODO: Return a file name like "delivery-report-2025-05-30.txt"
-        return null;
+        LocalDate today = LocalDate.now();
+        return String.format("delivery-report-%s.txt", today.toString());
     }
 }
