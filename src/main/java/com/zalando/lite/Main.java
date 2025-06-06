@@ -191,9 +191,5 @@ public class Main {
                     System.out.println("Invalid input. Please select a valid option.");
             }
         }
-        // TODO: Create scanner input loop
-        // TODO: Display menu options and call manager methods
-        // TODO: Use switch-case or if-else to control flow
-        // TODO: Instantiate managers (InventoryManager, CustomerManager, etc.)
     }
 }
