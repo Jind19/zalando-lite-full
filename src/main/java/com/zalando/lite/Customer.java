@@ -34,12 +34,16 @@ public class Customer {
     // A list of the customer's favorite product categories (e.g., "Shoes", "Accessories")
     private List<String> favoriteCategories;
 
+    private static int customerId = 100; //global id
+
     /**
      * Constructor to initialize a Customer.
      * Helps with registration and setup of test data.
      **/
-    public Customer() {
-
+    public Customer(String name, String email) {
+        this.name = name;
+        this.email = email;
+        this.id = customerId++;
     }
 
     // Returns the customer's ID

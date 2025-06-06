@@ -42,10 +42,20 @@ public class Product {
     // List of size options (e.g., "S", "M", "L")
     private List<String> availableSizes;
 
+    public Product(int id, String name, String category, double price, int stock, List<String> availableSizes) {
+        this.id = id;
+        this.name = name;
+        this.category = category;
+        this.price = price;
+        this.stock = stock;
+        this.availableSizes = availableSizes;
+    }
+
     /**
      * Constructor to initialize the product fields.
      * Used during product setup or inventory population.
      */
+
 
     // Getter and setter for ID
     public int getId() {

@@ -37,6 +37,14 @@ public class Review {
     // Timestamp for when the review was written
     private LocalDateTime timestamp;
 
+    public Review(Customer customer, Product product, int rating, String comment) {
+        this.customer = customer;
+        this.product = product;
+        this.rating = rating;
+        this.comment = comment;
+        this.timestamp = LocalDateTime.now();
+    }
+
     /**
      * Constructor for creating a review.
      * This should validate rating (1–5) and auto-set timestamp.
@@ -102,8 +110,8 @@ public class Review {
     @Override
     public String toString() {
         return "Review{" +
-                "customer=" + customer +
-                ", product=" + product +
+                "customer=" + customer.getName() +
+                ", product=" + product.getName() +
                 ", rating=" + rating +
                 ", comment='" + comment + '\'' +
                 ", timestamp=" + timestamp +
