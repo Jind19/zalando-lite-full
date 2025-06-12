@@ -105,4 +105,63 @@ public class OrderManager {
             inventoryManager.reduceStock(product.getId(), quantity);
         }
     }
+
+    /**
+     * Calculates the total revenue from all orders.
+     *
+     * @return the total revenue as a double
+     */
+    public double getTotalRevenue() {
+        double totalRevenue = 0.0;
+
+        for (List<Order> orders : customerOrders.values()) {
+            for (Order order : orders) {
+                totalRevenue += order.calculateTotal(); // Add the total for each order
+            }
+        }
+
+        return totalRevenue;
+    }
+
+    /**
+     * Calculates the average order value across all customers.
+     *
+     * @return the average order value, or 0.0 if no orders exist
+     */
+    public double getAverageOrderValue() {
+        int totalOrders = 0;
+
+        for (List<Order> orders : customerOrders.values()) {
+            totalOrders += orders.size();
+        }
+
+        if (totalOrders == 0) return 0.0;
+
+        return getTotalRevenue() / totalOrders;
+    }
+
+    /**
+     * Finds the order with the highest total price.
+     *
+     * @return the highest-value order, or null if no orders exist
+     */
+    public Order getHighestValueOrder() {
+        Order highestOrder = null;           // Variable to store the current highest value order
+        double highestValue = 0.0;           // Variable to track the highest value seen so far
+
+        for (List<Order> orders : customerOrders.values()) {
+            // Loop through the list of orders for each customer
+            for (Order order : orders) {
+                double total = order.calculateTotal();   // Calculate the total for this order
+
+                // If this order's total is higher than the current highest, update the highest
+                if (highestOrder == null || total > highestValue) {
+                    highestOrder = order;
+                    highestValue = total;
+                }
+            }
+        }
+
+        return highestOrder; // Return the order with the highest total value, or null if no orders exist
+    }
 }
